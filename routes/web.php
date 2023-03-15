@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/All', function () {
+    return view('Auteur.All');
+});
+
+Route::resource('articles', ArticlesController::class);
+
+Route::get('/AddArticles', function () {
+    return view('Auteur.AjoutArticle');})->middleware(['auth'])->name('dashboard');
+Route::post('/articles', 'App\Http\Controllers\ArticleController@store')->name('articles.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
